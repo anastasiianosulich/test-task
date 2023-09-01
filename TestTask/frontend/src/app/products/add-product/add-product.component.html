@@ -1,0 +1,87 @@
+<div class="container my-5">
+  <h1 class="mb-3">New Product</h1>
+  <div class="row">
+    <div class="col-6">
+      <form [formGroup]="addProductForm" (ngSubmit)="addProduct()">
+        <div class="mb-3">
+          <label for="productName" class="form-label">Name</label>
+          <input
+            type="text"
+            formControlName="productName"
+            class="form-control"
+            id="productName"
+            name="productName"
+          />
+
+          <div class="d-flex flex-column col-6">
+            <select
+              class="form-label mt-4 dropdown"
+              formControlName="categoryId"
+            >
+              <option value="" selected disabled>Select Category</option>
+              <option
+                *ngFor="let productCategory of productCategories"
+                [value]="productCategory.id"
+              >
+                {{ productCategory.name }}
+              </option>
+            </select>
+
+            <select class="form-label mt-4 dropdown" formControlName="sizeId">
+              <option value="" selected disabled>Select Size</option>
+              <option
+                *ngFor="let productSize of productSizes"
+                [value]="productSize.id"
+              >
+                {{ productSize.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <label for="availableQuantity" class="form-label">Quantity</label>
+        <input
+          type="number"
+          class="form-control"
+          id="availableQuantity"
+          name="availableQuantity"
+          formControlName="availableQuantity"
+        />
+
+        <label for="price" class="form-label mt-2">Price</label>
+        <input
+          type="number"
+          class="form-control"
+          id="price"
+          name="price"
+          formControlName="price"
+        />
+
+        <label for="description" class="form-label mt-2">Description</label>
+        <input
+          type="text"
+          formControlName="description"
+          class="form-control"
+          id="description"
+          name="description"
+        />
+        <div class="button-group mt-3">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="addProductForm.invalid"
+          >
+            Save
+          </button>
+          <button
+            type="button"
+            routerLink="/products"
+            class="btn btn-secondary ms-2"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

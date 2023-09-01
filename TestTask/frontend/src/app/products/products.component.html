@@ -1,0 +1,55 @@
+<div class="container my-5">
+  <div class="d-flex flex-row align-items-center justify-content-between">
+    <h1 class="mb-3">Products</h1>
+    <button
+      type="button"
+      routerLink="/products/add"
+      class="p-2 mb-2 btn btn-dark"
+    >
+      New Product
+    </button>
+  </div>
+  <table class="table table-bordered" *ngIf="productItems.length > 0">
+    <thead>
+      <tr>
+        <th>Product Id</th>
+        <th>Product Name</th>
+        <th>Product Category</th>
+        <th>Product Size</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pi of productItems">
+        <td>
+          <a class="item-link" [routerLink]="['/product/view', pi.id]">{{
+            pi.id
+          }}</a>
+        </td>
+        <td>{{ pi.productName }}</td>
+        <td>{{ pi.category }}</td>
+        <td>{{ pi.size }}</td>
+        <td>{{ pi.availableQuantity }}</td>
+        <td>{{ "$" + pi.price }}</td>
+
+        <td class="align-middle text-center">
+          <div>
+            <div class="btn-group" role="group">
+              <button
+                type="button"
+                class="btn btn-outline-danger"
+                (click)="deleteProduct(pi.id)"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="productItems.length == 0">No products found</p>
+</div>

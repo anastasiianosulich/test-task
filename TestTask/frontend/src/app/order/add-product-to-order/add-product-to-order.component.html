@@ -1,0 +1,86 @@
+<div class="container my-5">
+  <h1 class="mb-1">Add Product to Order</h1>
+  <div class="row">
+    <div class="col-6">
+      <form [formGroup]="addProductForm" (ngSubmit)="addProduct()">
+        <div class="d-flex flex-column col-6">
+          <label class="form-label label mt-4">Product Name: </label>
+          <select
+            class="form-label dropdown"
+            (change)="onProductSelected($event)"
+          >
+            <option value="" selected disabled>Select Product</option>
+            <option *ngFor="let product of products" [value]="product.id">
+              {{ product.name }}
+            </option>
+          </select>
+        </div>
+        <div class="mt-2">
+          <label class="label">Product Category: </label>
+          <span>{{ this.selectedProduct?.category }}</span>
+        </div>
+
+        <label for="quantity" class="form-label mt-4 label">Quantity:</label>
+        <input
+          type="number"
+          [class.is-invalid]="
+            addProductForm.get('quantity')?.touched &&
+            addProductForm.get('size')?.value &&
+            selectedProduct?.name &&
+            !isCorrectQuantitySelected()
+          "
+          class="form-control quantity-input"
+          id="quantity"
+          name="quantity"
+          formControlName="quantity"
+        />
+        <div
+          *ngIf="
+            addProductForm.get('quantity')?.touched &&
+            addProductForm.get('size')?.value &&
+            selectedProduct?.name &&
+            !isCorrectQuantitySelected()
+          "
+          class="invalid-feedback"
+        >
+          Available quantity is
+          {{ selectedProductItem?.availableQuantity ?? 0 }}
+        </div>
+        <div class="d-flex flex-column col-6">
+          <label for="size" class="form-label mt-4 label">Product Size:</label>
+          <select
+            (change)="onSizeChanged()"
+            class="form-label dropdown"
+            formControlName="size"
+          >
+            <option value="" selected disabled>Select Size</option>
+            <option
+              *ngFor="let productSize of productSizes"
+              [value]="productSize.name"
+            >
+              {{ productSize.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="button-group mt-3">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="addProductForm.invalid || !isCorrectQuantitySelected()"
+            (click)="addProduct()"
+          >
+            Save
+          </button>
+          <button
+            type="button"
+            routerLink="/orders/new"
+            class="btn btn-secondary ms-2"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

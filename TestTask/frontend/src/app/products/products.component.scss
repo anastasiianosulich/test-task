@@ -1,0 +1,15 @@
+.table {
+  text-align: center;
+}
+
+.item-link {
+  display: block;
+  text-decoration: none;
+  color: blue;
+  text-decoration: underline;
+}
+
+.item-link:hover {
+  cursor: pointer;
+  font-weight: 600;
+}

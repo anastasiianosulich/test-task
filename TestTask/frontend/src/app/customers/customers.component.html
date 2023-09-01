@@ -1,0 +1,32 @@
+<div class="container my-5">
+  <div class="d-flex flex-row align-items-center justify-content-between">
+    <h1 class="mb-3">Customers</h1>
+    <button
+      type="button"
+      routerLink="/customer/add"
+      class="p-2 mb-2 btn btn-dark"
+    >
+      New Customer
+    </button>
+  </div>
+  <table class="table table-bordered" *ngIf="customers.length > 0">
+    <thead>
+      <tr>
+        <th>Customer Name</th>
+        <th>Customer Address</th>
+        <th>TotalOrdered Cost</th>
+        <th>Orders Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.address }}</td>
+        <td>{{ "$" + (customer.ordersTotal | number : "1.2-2") }}</td>
+        <td>{{ customer.ordersCount }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="customers.length == 0">No customers found</p>
+</div>

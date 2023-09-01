@@ -1,0 +1,36 @@
+<div class="container my-5">
+  <div class="d-flex flex-row align-items-center justify-content-between">
+    <h1 class="mb-3">View Product</h1>
+    <button type="button" class="p-2 btn btn-dark">Edit</button>
+  </div>
+  <div class="info">
+    <div class="mt-2">
+      <label class="label">Product Id: </label>
+      <span>{{ productItem?.id }}</span>
+    </div>
+    <div class="mt-2">
+      <label class="label">Created Date: </label>
+      <span>{{ productItem?.createdDate }}</span>
+    </div>
+    <div class="mt-2">
+      <label class="label">Product Category: </label>
+      <span>{{ productItem?.category }}</span>
+    </div>
+    <div class="mt-2">
+      <label class="label">Product Size: </label>
+      <span>{{ productItem?.size }}</span>
+    </div>
+    <div class="mt-2">
+      <label class="label">Quantity: </label>
+      <span>{{ productItem?.availableQuantity }}</span>
+    </div>
+    <div class="mt-2">
+      <label class="label">Price: </label>
+      <span>{{ "$" + productItem?.price }}</span>
+    </div>
+    <div class="mt-2">
+      <label class="label">Description: </label>
+      <span>{{ productItem?.description }}</span>
+    </div>
+  </div>
+</div>
